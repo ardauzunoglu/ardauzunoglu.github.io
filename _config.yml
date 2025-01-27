@@ -22,13 +22,13 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
+  name             : "Arda Uzuno<a href='https://en.wikipedia.org/wiki/Ğ' target="_blank">ğ</a>lu"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Second-year undergrad @ JHU."
+  location         :
+  employer         :
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "auzunog1@jh.edu" 
 
   # Academic websites
   googlescholar    : "https://scholar.google.com/citations?user=5fsB_GMAAAAJ"
