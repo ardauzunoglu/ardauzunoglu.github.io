@@ -11,7 +11,7 @@ locale                   : "en-US"
 title                    : "Arda Uzunoğlu"
 title_separator          : "-"
 name                     : &name "Arda Uzunoğlu"
-description              : &description "Second-year undergrad @ JHU."
+description              : &description "Second-year CS & Applied Math @ JHU."
 url                      : https://ardauzunoglu.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "ardauzunoglu/ardauzunoglu.github.io"
@@ -24,7 +24,7 @@ author:
   avatar           : "profile.png"
   name             : "Arda Uzunoğlu"
   pronouns         : # example: "she/her"  
-  bio              : "Second-year undergrad @ JHU."
+  bio              : "Second-year CS & Applied Math @ JHU."
   location         :
   employer         :
   uri              : # URL
