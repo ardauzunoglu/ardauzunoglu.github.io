@@ -4,92 +4,89 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Arda Uzunoğlu</title>
-    <meta name="description" content="Computer science researcher.">
+    <meta name="description" content="Arda Uzunoğlu — computer science researcher.">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body class="home-page">
-    <div class="layout avatar-top">
-      <div class="avatar-wrap">
-        <img class="avatar avatar-primary" src="./assets/website_img.jpeg" alt="Icon for Arda Uzunoğlu">
-        <img class="avatar avatar-hover" src="./assets/website_img2.png" alt="Arda Uzunoğlu at the zoo">
-        <div class="avatar-caption">Me and LLMs in the zoo.</div>
-      </div>
-    </div>
-    <header class="layout header">
-      <div class="identity-copy">
-        <h1 class="brand">
-          <a href="./">Arda Uzuno</a><a class="name-g" href="https://en.wikipedia.org/wiki/%C4%9E" target="_blank" rel="noreferrer">ğ</a><a href="./">lu</a>
-        </h1>
-      </div>
-      <nav class="nav">
-        <a href="./research/index.html">research</a>
+  <body class="benshi-home">
+    <main class="profile-page">
+      <nav class="profile-nav" aria-label="Primary navigation">
+        <a class="active" href="./">home</a>
+        <a href="./blog/index.html">blog</a>
         <a href="./awards/index.html">more</a>
       </nav>
-    </header>
 
-    <main class="layout">
-      <div class="stack-lg">
-        <div class="stack-md">
-          <p>
-            I'm a fourth-year undergraduate studying computer science and
-            applied mathematics at Johns Hopkins University, where I am
-            fortunate to work with
-            <a class="link" href="https://danielkhashabi.com/" target="_blank" rel="noreferrer">Daniel Khashabi</a>
-            and
-            <a class="link" href="https://www.cs.jhu.edu/~vandurme/" target="_blank" rel="noreferrer">Benjamin Van Durme</a>.
-          </p>
-          <p>
-            I am interested in data and how language models learn.
-          </p>
+      <header class="profile-header">
+        <div class="profile-identity">
+          <div class="profile-avatar-wrap">
+            <img class="profile-avatar avatar-primary" src="./assets/profilepic.jpeg" alt="Arda Uzunoğlu">
+            <img class="profile-avatar avatar-hover" src="./assets/website_img.jpeg" alt="A squirrel">
+          </div>
+          <div>
+            <h1>Arda Uzunoğlu</h1>
+          </div>
         </div>
-
-        <div class="lead stack-sm">
-          <p>Selected work:</p>
-
-          <a class="project-pair" href="./research/index.html#iap">
-            <div class="project-title">Information Abundance Paradox ↗</div>
-            <div>
-              <p>Is near-infinite context the inevitable future of language models?</p>
-              <div class="project-status">In submission</div>
-            </div>
+        <div class="profile-links" aria-label="External links">
+          <a class="social-icon scholar-icon" href="https://scholar.google.com/citations?user=5fsB_GMAAAAJ&amp;hl=tr" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1.5 8.5 12 14l8.1-4.25V16h1.8V8.5L12 3Zm-6.3 8.8V16c0 1.9 2.8 3.5 6.3 3.5s6.3-1.6 6.3-3.5v-4.2L12 15.1l-6.3-3.3Z"/></svg>
           </a>
-
-          <a class="project-pair" href="./research/index.html#trust-functions">
-            <div class="project-title">Trust Functions ↗</div>
-            <div>
-              <p>Near-lossless weak-to-strong generalization.</p>
-              <div class="project-status">ICML 2026</div>
-            </div>
+          <a class="social-icon" href="https://github.com/ardauzunoglu" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.2-3.37-1.2-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.15-4.56-5.1 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.32.1-2.75 0 0 .84-.28 2.75 1.06A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.35 1.9-1.34 2.74-1.06 2.74-1.06.55 1.43.2 2.49.1 2.75.64.72 1.03 1.64 1.03 2.77 0 3.96-2.35 4.84-4.58 5.1.36.33.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.24 10.24 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z"/></svg>
+          </a>
+          <a class="social-icon" href="https://x.com/aardauzunoglu" target="_blank" rel="noreferrer" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.1c.01.2.01.4.01.6C21.61 13.8 17 21 8.57 21 5.98 21 3.58 20.25 1.56 18.97c.36.04.71.06 1.08.06 2.15 0 4.12-.73 5.69-1.97a3.3 3.3 0 0 1-3.08-2.29c.21.03.42.05.64.05.31 0 .62-.04.9-.12a3.3 3.3 0 0 1-2.65-3.24v-.04c.45.25.98.4 1.53.42a3.29 3.29 0 0 1-1.02-4.4 9.37 9.37 0 0 0 6.8 3.45 3.72 3.72 0 0 1-.08-.75 3.3 3.3 0 0 1 5.7-2.25 6.45 6.45 0 0 0 2.1-.8 3.29 3.29 0 0 1-1.45 1.82 6.55 6.55 0 0 0 1.9-.52 7.1 7.1 0 0 1-1.62 1.67Z"/></svg>
           </a>
         </div>
-      </div>
+      </header>
+
+      <section class="profile-intro" aria-label="About Arda">
+        <p>I'm a fourth year undergraduate studying computer science and applied mathematics at Johns Hopkins University, where I am fortunate to work with <a href="https://danielkhashabi.com/" target="_blank" rel="noreferrer">Daniel Khashabi</a>, <a href="https://www.cs.jhu.edu/~vandurme/" target="_blank" rel="noreferrer">Benjamin Van Durme</a>, and <a href="https://enalisnick.github.io/" target="_blank" rel="noreferrer">Eric Nalisnick</a>. I am currently applying to PhD programs for Fall 2027 entry.</p>
+        <p>I am interested in developing a scientific understanding of large language models, as well as in broader questions about data, including how it governs model behavior, contributes to the emergence of intelligence, and shapes our understanding of models.</p>
+      </section>
+
+      <section class="recent-card" aria-labelledby="recent-title">
+        <h2 id="recent-title">Recently</h2>
+        <div class="recent-item">
+          <time datetime="2026-05">May '26</time>
+          <p>Received the Pistritto Research Fellowship ($6,000).</p>
+        </div>
+        <div class="recent-item">
+          <time datetime="2026-04">Apr '26</time>
+          <p>Trust Functions was accepted to ICML 2026.</p>
+        </div>
+        <div class="recent-item">
+          <time datetime="2026-03">Mar '26</time>
+          <p>Received a Summer PURA Research Grant ($6,000).</p>
+        </div>
+      </section>
+
+      <p class="contact-line">Feel free to contact me at <a href="mailto:auzunog1@jh.edu">auzunog1@jh.edu</a>.</p>
+
+      <section class="works" aria-labelledby="works-title">
+        <h2 id="works-title">Selected Works</h2>
+
+        <article class="work-entry">
+          <h3>Information Abundance Paradox: Long-Context Training Undermines Parametric Knowledge</h3>
+          <p class="work-authors"><strong>Arda Uzunoglu</strong>, Benjamin Van Durme, Daniel Khashabi</p>
+          <p class="work-venue">In submission · Long-context training · Parametric knowledge</p>
+          <div class="work-actions">
+            <a href="https://arxiv.org/pdf/2608.12218" target="_blank" rel="noreferrer">Paper@arXiv</a>
+            <a href="https://github.com/ardauzunoglu/information-abundance-paradox" target="_blank" rel="noreferrer">Code@GitHub</a>
+            <a href="https://huggingface.co/collections/ardauzunoglu/information-abundance-paradox" target="_blank" rel="noreferrer">Artifacts@Hugging Face</a>
+          </div>
+        </article>
+
+        <article class="work-entry">
+          <h3>Trust Functions: Near-Lossless Weak-to-Strong Generalization by Learning When to Trust the Weak Teacher</h3>
+          <p class="work-authors"><strong>Arda Uzunoglu*</strong>, <strong>Alvin Zhang*</strong>, Daniel Khashabi <span class="cofirst-note">* equal contribution</span></p>
+          <p class="work-venue">ICML 2026 · Weak-to-strong generalization</p>
+          <div class="work-actions">
+            <a href="https://arxiv.org/abs/2606.01000" target="_blank" rel="noreferrer">Paper@arXiv</a>
+            <a href="https://github.com/ardauzunoglu/trust-functions" target="_blank" rel="noreferrer">Code@GitHub</a>
+          </div>
+        </article>
+      </section>
+
+      <footer class="site-credit">Shoutout to <a href="https://benshi34.github.io/" target="_blank" rel="noreferrer">Ben Shi</a>, from whom I borrowed this design.</footer>
     </main>
-
-    <footer class="layout footer">
-      <div class="footer-row">
-        <span class="footer-label">GitHub</span>
-        <hr class="footer-divider">
-        <a class="link" href="https://github.com/ardauzunoglu">@ardauzunoglu</a>
-      </div>
-
-      <div class="footer-row">
-        <span class="footer-label">Email</span>
-        <hr class="footer-divider">
-        <a class="link" href="mailto:auzunog1@jh.edu">auzunog1@jh.edu</a>
-      </div>
-
-      <div class="footer-row">
-        <span class="footer-label">Scholar</span>
-        <hr class="footer-divider">
-        <a class="link" href="https://scholar.google.com/citations?user=5fsB_GMAAAAJ&amp;hl=tr">Google Scholar</a>
-      </div>
-
-      <div class="footer-row">
-        <div class="footer-credit">
-          I saw this design on <a class="link" href="https://www.konwoo.kim">Konwoo Kim</a>,
-          who in turn borrowed it from <a class="link" href="https://www.ekzhang.com">Eric Zhang</a>.
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
