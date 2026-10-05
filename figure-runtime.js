@@ -22,22 +22,31 @@
   const number = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const legendLayout = (items, startX, availableWidth) => {
-    const gap = 10;
+    const minimumGap = 10;
     const rowHeight = 19;
-    const positions = [];
-    let x = startX;
-    let row = 0;
+    const rows = [[]];
     items.forEach((item, index) => {
       const label = item.name || `Series ${index + 1}`;
       const width = clamp(34 + (label.length * 5.2), 64, Math.min(190, availableWidth));
-      if (x > startX && x + width > startX + availableWidth) {
-        row += 1;
-        x = startX;
+      let row = rows.at(-1);
+      const occupied = row.reduce((total, entry) => total + entry.width, 0) + (row.length * minimumGap);
+      if (row.length && occupied + width > availableWidth) {
+        row = [];
+        rows.push(row);
       }
-      positions.push({ x, y: 18 + (row * rowHeight), width, label });
-      x += width + gap;
+      row.push({ index, width, label });
     });
-    return { positions, rows: row + 1, rowHeight };
+    const positions = Array(items.length);
+    rows.forEach((row, rowIndex) => {
+      const itemWidth = row.reduce((total, entry) => total + entry.width, 0);
+      const gap = row.length > 1 ? (availableWidth - itemWidth) / (row.length - 1) : 0;
+      let x = row.length === 1 ? startX + ((availableWidth - itemWidth) / 2) : startX;
+      row.forEach(entry => {
+        positions[entry.index] = { x, y: 18 + (rowIndex * rowHeight), width: entry.width, label: entry.label };
+        x += entry.width + gap;
+      });
+    });
+    return { positions, rows: rows.length, rowHeight };
   };
   const formatNumber = value => {
     const numeric = Number(value);

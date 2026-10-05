@@ -327,7 +327,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(post.title)} — Arda Uzunoğlu</title>
     <meta name="description" content="${escapeHtml(post.summary)}">
-    <link rel="stylesheet" href="../../styles.css?v=20261005">
+    <link rel="stylesheet" href="../../styles.css?v=20261005-2">
   </head>
   <body class="benshi-home subpage">
     <main class="profile-page">
@@ -347,7 +347,7 @@ ${renderedBody.split('\n').map(line => `          ${line}`).join('\n')}
         </div>
       </article>
     </main>
-    <script src="../../figure-runtime.js?v=7"><\/script>
+    <script src="../../figure-runtime.js?v=8"><\/script>
   </body>
 </html>
 `;
