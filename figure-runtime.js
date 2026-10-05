@@ -287,7 +287,7 @@
       playback.setActive(fast ? 'fast' : 'play');
       schedule();
     };
-    playback.buttons.replay.addEventListener('click', () => start(true, false));
+    playback.buttons.replay.addEventListener('click', () => start(true, true));
     playback.buttons.pause.addEventListener('click', () => {
       paused = true;
       window.clearTimeout(timer);
@@ -295,9 +295,9 @@
     });
     playback.buttons.play.addEventListener('click', () => start(false, false));
     playback.buttons.fast.addEventListener('click', () => start(false, true));
-    playback.setActive('play');
+    playback.setActive('fast');
     render(0);
-    return { restart: () => start(true, false), prepare: () => { paused = true; window.clearTimeout(timer); count = 0; render(0); playback.setActive('play'); } };
+    return { restart: () => start(true, true), prepare: () => { paused = true; window.clearTimeout(timer); count = 0; render(0); playback.setActive('fast'); } };
   }
 
   function attachProgressPlayback(shell, render, duration = 1200) {
@@ -324,7 +324,7 @@
       playback.setActive(fast ? 'fast' : 'play');
       frame = window.requestAnimationFrame(draw);
     };
-    playback.buttons.replay.addEventListener('click', () => start(true, false));
+    playback.buttons.replay.addEventListener('click', () => start(true, true));
     playback.buttons.pause.addEventListener('click', () => {
       if (!paused && startedAt) elapsed = Math.min(duration, elapsed + ((performance.now() - startedAt) * speed));
       paused = true;
@@ -333,9 +333,9 @@
     });
     playback.buttons.play.addEventListener('click', () => start(false, false));
     playback.buttons.fast.addEventListener('click', () => start(false, true));
-    playback.setActive('play');
+    playback.setActive('fast');
     render(0);
-    return { restart: () => start(true, false), prepare: () => { paused = true; window.cancelAnimationFrame(frame); elapsed = 0; render(0); playback.setActive('play'); } };
+    return { restart: () => start(true, true), prepare: () => { paused = true; window.cancelAnimationFrame(frame); elapsed = 0; render(0); playback.setActive('fast'); } };
   }
 
   function renderLine(host, config) {
@@ -726,12 +726,17 @@
       return controller;
     });
     let active = 0;
-    const show = index => {
-      active = clamp(index, 0, figures.length - 1);
-      track.scrollTo({ left: active * track.clientWidth, behavior: 'smooth' });
+    let scrollTarget = null;
+    const updateNavigation = () => {
       [...dots.children].forEach((dot, dotIndex) => dot.setAttribute('aria-current', String(dotIndex === active)));
       previous.disabled = active === 0;
       next.disabled = active === figures.length - 1;
+    };
+    const show = index => {
+      active = clamp(index, 0, figures.length - 1);
+      scrollTarget = active;
+      track.scrollTo({ left: active * track.clientWidth, behavior: 'smooth' });
+      updateNavigation();
       controllers[active].restart();
     };
     previous.addEventListener('click', () => show(active - 1));
@@ -741,8 +746,17 @@
     track.addEventListener('scroll', () => {
       window.cancelAnimationFrame(scrollFrame);
       scrollFrame = window.requestAnimationFrame(() => {
+        if (scrollTarget != null) {
+          const targetLeft = scrollTarget * track.clientWidth;
+          if (Math.abs(track.scrollLeft - targetLeft) <= 1) scrollTarget = null;
+          return;
+        }
         const index = clamp(Math.round(track.scrollLeft / Math.max(track.clientWidth, 1)), 0, figures.length - 1);
-        if (index !== active) show(index);
+        if (index !== active) {
+          active = index;
+          updateNavigation();
+          controllers[active].restart();
+        }
       });
     });
     track.addEventListener('keydown', event => {
