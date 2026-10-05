@@ -347,7 +347,7 @@ ${renderedBody.split('\n').map(line => `          ${line}`).join('\n')}
         </div>
       </article>
     </main>
-    <script src="../../figure-runtime.js?v=6"><\/script>
+    <script src="../../figure-runtime.js?v=7"><\/script>
   </body>
 </html>
 `;

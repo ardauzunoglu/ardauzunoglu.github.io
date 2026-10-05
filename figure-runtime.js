@@ -21,6 +21,24 @@
 
   const number = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const legendLayout = (items, startX, availableWidth) => {
+    const gap = 10;
+    const rowHeight = 19;
+    const positions = [];
+    let x = startX;
+    let row = 0;
+    items.forEach((item, index) => {
+      const label = item.name || `Series ${index + 1}`;
+      const width = clamp(34 + (label.length * 5.2), 64, Math.min(190, availableWidth));
+      if (x > startX && x + width > startX + availableWidth) {
+        row += 1;
+        x = startX;
+      }
+      positions.push({ x, y: 18 + (row * rowHeight), width, label });
+      x += width + gap;
+    });
+    return { positions, rows: row + 1, rowHeight };
+  };
   const formatNumber = value => {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return String(value);
@@ -334,10 +352,9 @@
     yValues.push(...fixedYLines.map(item => number(item.value, NaN)).filter(Number.isFinite));
     const [xMin, xMax] = extent(xValues, config.xMin, config.xMax);
     const [yMin, yMax] = extent(yValues, config.yMin, config.yMax);
-    const legendAbove = config.legendPosition === 'top' || series.length > 2;
-    const legendColumns = legendAbove ? Math.max(1, Math.min(series.length, number(config.legendColumns, series.length > 3 ? 2 : 1))) : 1;
-    const legendRows = Math.ceil(series.length / legendColumns);
-    const margin = { top: legendAbove ? 24 + (legendRows * 18) : 24, right: 10, bottom: 58, left: 62 + Math.max(0, number(config.yLabelGap, 0)) };
+    const margin = { top: 24, right: 10, bottom: 58, left: 62 + Math.max(0, number(config.yLabelGap, 0)) };
+    const lineLegend = legendLayout(series, margin.left, WIDTH - margin.left - margin.right);
+    margin.top = 24 + (lineLegend.rows * lineLegend.rowHeight);
     const uniqueX = [...new Set(xValues)].sort((a, b) => a - b);
     const axes = addNumericAxes(shell, {
       margin, xMin, xMax, yMin, yMax, xLabel: config.xLabel, xDescription: config.xDescription,
@@ -349,13 +366,11 @@
     shell.svg.append(legend);
     series.forEach((item, index) => {
       const color = item.color || COLORS[index % COLORS.length];
-      const legendColumn = legendAbove ? Math.floor(index / legendRows) : 0;
-      const legendRow = legendAbove ? index % legendRows : index;
-      const legendColumnWidth = axes.plotWidth / legendColumns;
-      const legendX = margin.left + (legendColumn * legendColumnWidth);
-      const y = (legendAbove ? 18 : margin.top + 17) + (legendRow * 18);
+      const position = lineLegend.positions[index];
+      const legendX = position.x;
+      const y = position.y;
       const group = svgElement('g', { class: 'legend-item interactive-mark' });
-      group.append(svgElement('rect', { x: legendX + 1, y: y - 11, width: Math.max(128, legendColumnWidth - 8), height: 17, class: 'legend-hit-area' }));
+      group.append(svgElement('rect', { x: legendX + 1, y: y - 11, width: position.width, height: 17, class: 'legend-hit-area' }));
       const swatch = svgElement('line', { x1: legendX + 7, y1: y, x2: legendX + 28, y2: y, class: 'legend-swatch' });
       swatch.style.stroke = color;
       group.append(swatch);
@@ -488,7 +503,9 @@
     yValues.push(...fixedYLines.map(item => number(item.value, NaN)).filter(Number.isFinite));
     const [yMin, yMax] = extent(yValues, config.yMin ?? 0, config.yMax, true);
     const yLabelGap = Math.max(0, number(config.yLabelGap, 0));
-    const margin = { top: grouped ? 50 : 24, right: 10, bottom: 66, left: 62 + yLabelGap };
+    const margin = { top: 24, right: 10, bottom: 66, left: 62 + yLabelGap };
+    const barLegend = grouped ? legendLayout(series, margin.left, WIDTH - margin.left - margin.right) : null;
+    if (barLegend) margin.top = 28 + (barLegend.rows * barLegend.rowHeight);
     const plotWidth = WIDTH - margin.left - margin.right;
     const plotHeight = HEIGHT - margin.top - margin.bottom;
     const yScale = value => margin.top + ((yMax - number(value)) / (yMax - yMin)) * plotHeight;
@@ -509,13 +526,15 @@
     if (grouped) {
       series.forEach((seriesItem, index) => {
         const color = seriesItem.color || COLORS[index % COLORS.length];
-        const legendX = margin.left + (index * 152);
+        const position = barLegend.positions[index];
+        const legendX = position.x;
+        const legendY = position.y;
         const legend = svgElement('g', { class: 'legend-item interactive-mark' });
-        legend.append(svgElement('rect', { x: legendX, y: 12, width: 140, height: 25, class: 'legend-hit-area' }));
-        const swatch = svgElement('rect', { x: legendX + 4, y: 20, width: 18, height: 8, class: 'legend-swatch' });
+        legend.append(svgElement('rect', { x: legendX, y: legendY - 11, width: position.width, height: 17, class: 'legend-hit-area' }));
+        const swatch = svgElement('rect', { x: legendX + 4, y: legendY - 7, width: 18, height: 8, class: 'legend-swatch' });
         swatch.style.fill = color;
         legend.append(swatch);
-        const label = addSvgText(legend, seriesItem.name || `Series ${index + 1}`, { x: legendX + 29, y: 29, class: 'series-label' });
+        const label = addSvgText(legend, position.label, { x: legendX + 29, y: legendY + 2, class: 'series-label' });
         label.style.fill = color;
         shell.svg.append(legend);
         bindTooltip(shell, legend, seriesItem.name || `Series ${index + 1}`, seriesItem.description ? [seriesItem.description] : []);
