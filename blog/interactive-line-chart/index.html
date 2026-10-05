@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interactive Line Charts — Arda Uzunoğlu</title>
+    <meta name="description" content="A placeholder post demonstrating an interactive line chart.">
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body class="benshi-home subpage">
+    <main class="profile-page">
+      <nav class="profile-nav" aria-label="Primary navigation">
+        <a href="../../index.html">home</a>
+        <a class="active" href="../index.html">blog</a>
+        <a href="../../awards/index.html">more</a>
+      </nav>
+
+      <article class="blog-post">
+        <header class="post-header">
+          <h1>Interactive Line Charts</h1>
+          <p class="post-lede">A placeholder post for experimenting with figures that reveal themselves as you read.</p>
+          <dl class="post-metadata">
+            <div>
+              <dt>Authors</dt>
+              <dd>Arda Uzunoğlu</dd>
+            </div>
+            <div>
+              <dt>Affiliation</dt>
+              <dd>Johns Hopkins University</dd>
+            </div>
+            <div>
+              <dt>Published</dt>
+              <dd><time datetime="2026-08">August 2026</time></dd>
+            </div>
+          </dl>
+        </header>
+
+        <div class="post-content">
+          <p>Figures often carry an argument more directly than prose. This small template treats a plot as a first-class part of a post: it can unfold over time, retain a compact caption, and still expose the values behind every mark.</p>
+
+          <figure class="line-chart-lab interactive-line-figure" aria-labelledby="chart-caption">
+            <div class="chart-wrap">
+              <svg class="line-chart" role="img" aria-label="Animated line chart showing mean outcome and standard deviation by iteration"></svg>
+              <div id="chart-tooltip-1" class="chart-tooltip" role="tooltip" hidden></div>
+            </div>
+            <div class="figure-footer">
+              <figcaption id="chart-caption" class="figure-caption"><span class="figure-title">Mean outcome by iteration.</span> Points show mean ± standard deviation.</figcaption>
+              <div class="chart-playback" aria-label="Animation controls">
+                <button class="replay-button" type="button" aria-label="Replay animation" title="Replay animation">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M4.7 14a7.5 7.5 0 1 0 1.4-7.1L4 9" /></svg>
+                </button>
+                <button class="pause-button" type="button" aria-label="Pause animation" aria-pressed="false" title="Pause animation">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+                </button>
+                <button class="play-button" type="button" aria-label="Play animation" aria-pressed="true" title="Play animation">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="play-fill" d="m8 5 11 7-11 7z" /></svg>
+                </button>
+                <button class="fast-play-button" type="button" aria-label="Play animation faster" aria-pressed="false" title="Play faster">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="play-fill" d="m3 5 8 7-8 7zm9 0 8 7-8 7z" /></svg>
+                </button>
+              </div>
+            </div>
+            <output class="point-readout sr-only" aria-live="polite">Loading observations…</output>
+          </figure>
+
+          <section class="multi-figure-carousel" aria-label="Figures 2 and 3">
+            <button class="carousel-arrow carousel-arrow-previous" type="button" aria-label="Previous figure" aria-controls="subfigure-track">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+            </button>
+            <div class="subfigure-carousel">
+              <div id="subfigure-track" class="subfigure-track" tabindex="0"></div>
+              <div class="subfigure-pagination" aria-label="Subfigure navigation">
+                <button type="button" aria-label="Show subfigure 1" aria-current="true"></button>
+                <button type="button" aria-label="Show subfigure 2" aria-current="false"></button>
+              </div>
+            </div>
+            <button class="carousel-arrow carousel-arrow-next" type="button" aria-label="Next figure" aria-controls="subfigure-track">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+            </button>
+          </section>
+
+          <h2>Other scientific figure types</h2>
+          <p>The same figure shell also supports relationships, estimates with uncertainty, and matrix-valued results.</p>
+
+          <figure class="line-chart-lab scientific-figure" aria-labelledby="scatter-caption">
+            <div class="chart-wrap">
+              <svg class="scientific-chart" viewBox="0 0 720 370" role="img" aria-label="Scatter plot showing a positive relationship between data scale and performance">
+                <rect x="52" y="24" width="658" height="291" class="chart-frame" />
+                <line x1="52" y1="97" x2="710" y2="97" class="grid-line" /><line x1="52" y1="170" x2="710" y2="170" class="grid-line" /><line x1="52" y1="242" x2="710" y2="242" class="grid-line" />
+                <path d="M76 279 L688 61" class="trend-line" />
+                <circle cx="85" cy="275" r="6" class="scatter-mark" data-tooltip="Data scale: 1.0 · Performance: 2.0" /><circle cx="143" cy="252" r="6" class="scatter-mark" data-tooltip="Data scale: 1.8 · Performance: 2.3" /><circle cx="204" cy="238" r="6" class="scatter-mark" data-tooltip="Data scale: 2.6 · Performance: 2.5" /><circle cx="267" cy="201" r="6" class="scatter-mark" data-tooltip="Data scale: 3.4 · Performance: 3.0" /><circle cx="328" cy="216" r="6" class="scatter-mark" data-tooltip="Data scale: 4.2 · Performance: 2.8" /><circle cx="391" cy="165" r="6" class="scatter-mark" data-tooltip="Data scale: 5.0 · Performance: 3.5" /><circle cx="452" cy="149" r="6" class="scatter-mark" data-tooltip="Data scale: 5.8 · Performance: 3.7" /><circle cx="514" cy="124" r="6" class="scatter-mark" data-tooltip="Data scale: 6.6 · Performance: 4.0" /><circle cx="576" cy="111" r="6" class="scatter-mark" data-tooltip="Data scale: 7.4 · Performance: 4.2" /><circle cx="638" cy="74" r="6" class="scatter-mark" data-tooltip="Data scale: 8.2 · Performance: 4.7" />
+                <text x="381" y="357" text-anchor="middle" class="axis-title">data scale</text><text x="18" y="170" text-anchor="middle" transform="rotate(-90 18 170)" class="axis-title">performance</text>
+              </svg>
+              <div class="chart-tooltip" role="tooltip" hidden></div>
+            </div>
+            <div class="figure-footer"><figcaption id="scatter-caption" class="figure-caption"><span class="figure-title">Relationship between two quantities.</span> Points show observations; the dashed line summarizes the trend.</figcaption></div>
+          </figure>
+
+          <figure class="line-chart-lab scientific-figure" aria-labelledby="interval-caption">
+            <div class="chart-wrap">
+              <svg class="scientific-chart" viewBox="0 0 720 370" role="img" aria-label="Interval plot comparing four model variants with confidence intervals">
+                <rect x="150" y="24" width="560" height="291" class="chart-frame" />
+                <line x1="430" y1="24" x2="430" y2="315" class="fixed-value-line" /><text x="438" y="42" class="fixed-value-label">baseline</text>
+                <text x="136" y="79" text-anchor="end" class="category-label">Model A</text><text x="136" y="143" text-anchor="end" class="category-label">Model B</text><text x="136" y="207" text-anchor="end" class="category-label">Model C</text><text x="136" y="271" text-anchor="end" class="category-label">Model D</text>
+                <g class="interval-mark" data-tooltip="Model A · estimate 0.18 · 95% CI [0.09, 0.27]"><line x1="481" y1="75" x2="582" y2="75" /><line x1="481" y1="68" x2="481" y2="82" /><line x1="582" y1="68" x2="582" y2="82" /><circle cx="532" cy="75" r="6" /></g>
+                <g class="interval-mark" data-tooltip="Model B · estimate 0.08 · 95% CI [-0.02, 0.18]"><line x1="419" y1="139" x2="532" y2="139" /><line x1="419" y1="132" x2="419" y2="146" /><line x1="532" y1="132" x2="532" y2="146" /><circle cx="476" cy="139" r="6" /></g>
+                <g class="interval-mark" data-tooltip="Model C · estimate -0.05 · 95% CI [-0.14, 0.04]"><line x1="352" y1="203" x2="453" y2="203" /><line x1="352" y1="196" x2="352" y2="210" /><line x1="453" y1="196" x2="453" y2="210" /><circle cx="402" cy="203" r="6" /></g>
+                <g class="interval-mark" data-tooltip="Model D · estimate 0.25 · 95% CI [0.17, 0.34]"><line x1="526" y1="267" x2="621" y2="267" /><line x1="526" y1="260" x2="526" y2="274" /><line x1="621" y1="260" x2="621" y2="274" /><circle cx="571" cy="267" r="6" /></g>
+                <text x="430" y="357" text-anchor="middle" class="axis-title">effect relative to baseline</text>
+              </svg>
+              <div class="chart-tooltip" role="tooltip" hidden></div>
+            </div>
+            <div class="figure-footer"><figcaption id="interval-caption" class="figure-caption"><span class="figure-title">Estimates with uncertainty.</span> Point estimates are paired with 95% confidence intervals and a fixed baseline.</figcaption></div>
+          </figure>
+
+          <figure class="line-chart-lab scientific-figure" aria-labelledby="heatmap-caption">
+            <div class="chart-wrap">
+              <svg class="scientific-chart" viewBox="0 0 720 370" role="img" aria-label="Heatmap comparing performance across datasets and model sizes">
+                <text x="190" y="42" text-anchor="middle" class="category-label">Small</text><text x="300" y="42" text-anchor="middle" class="category-label">Medium</text><text x="410" y="42" text-anchor="middle" class="category-label">Large</text><text x="520" y="42" text-anchor="middle" class="category-label">XL</text>
+                <text x="123" y="92" text-anchor="end" class="category-label">Dataset A</text><text x="123" y="152" text-anchor="end" class="category-label">Dataset B</text><text x="123" y="212" text-anchor="end" class="category-label">Dataset C</text><text x="123" y="272" text-anchor="end" class="category-label">Dataset D</text>
+                <g class="heatmap-cells">
+                  <rect x="140" y="55" width="100" height="50" class="heat-1" data-tooltip="Dataset A · Small · 0.42" /><rect x="250" y="55" width="100" height="50" class="heat-2" data-tooltip="Dataset A · Medium · 0.56" /><rect x="360" y="55" width="100" height="50" class="heat-4" data-tooltip="Dataset A · Large · 0.74" /><rect x="470" y="55" width="100" height="50" class="heat-5" data-tooltip="Dataset A · XL · 0.83" />
+                  <rect x="140" y="115" width="100" height="50" class="heat-2" data-tooltip="Dataset B · Small · 0.51" /><rect x="250" y="115" width="100" height="50" class="heat-3" data-tooltip="Dataset B · Medium · 0.63" /><rect x="360" y="115" width="100" height="50" class="heat-3" data-tooltip="Dataset B · Large · 0.67" /><rect x="470" y="115" width="100" height="50" class="heat-5" data-tooltip="Dataset B · XL · 0.81" />
+                  <rect x="140" y="175" width="100" height="50" class="heat-1" data-tooltip="Dataset C · Small · 0.38" /><rect x="250" y="175" width="100" height="50" class="heat-2" data-tooltip="Dataset C · Medium · 0.54" /><rect x="360" y="175" width="100" height="50" class="heat-4" data-tooltip="Dataset C · Large · 0.72" /><rect x="470" y="175" width="100" height="50" class="heat-4" data-tooltip="Dataset C · XL · 0.77" />
+                  <rect x="140" y="235" width="100" height="50" class="heat-2" data-tooltip="Dataset D · Small · 0.49" /><rect x="250" y="235" width="100" height="50" class="heat-3" data-tooltip="Dataset D · Medium · 0.61" /><rect x="360" y="235" width="100" height="50" class="heat-4" data-tooltip="Dataset D · Large · 0.70" /><rect x="470" y="235" width="100" height="50" class="heat-5" data-tooltip="Dataset D · XL · 0.86" />
+                </g>
+                <text x="355" y="332" text-anchor="middle" class="axis-title">model size</text>
+              </svg>
+              <div class="chart-tooltip" role="tooltip" hidden></div>
+            </div>
+            <div class="figure-footer"><figcaption id="heatmap-caption" class="figure-caption"><span class="figure-title">Matrix-valued results.</span> Color intensity shows performance across datasets and model sizes.</figcaption></div>
+          </figure>
+
+          <figure class="line-chart-lab scientific-figure animated-bar-figure" aria-labelledby="bar-caption">
+            <div class="chart-wrap">
+              <svg class="scientific-chart" viewBox="0 0 720 370" role="img" aria-label="Animated bar chart comparing four experimental conditions">
+                <rect x="52" y="24" width="658" height="291" class="chart-frame" />
+                <line x1="52" y1="97" x2="710" y2="97" class="grid-line" /><line x1="52" y1="170" x2="710" y2="170" class="grid-line" /><line x1="52" y1="242" x2="710" y2="242" class="grid-line" />
+                <text x="40" y="101" text-anchor="end" class="category-label">75</text><text x="40" y="174" text-anchor="end" class="category-label">50</text><text x="40" y="246" text-anchor="end" class="category-label">25</text>
+                <g class="bar-mark bar-delay-1" data-tooltip="Condition A · mean 42 · std 5"><rect x="105" y="193" width="88" height="122" class="bar-fill" /><line x1="149" y1="178" x2="149" y2="208" class="bar-error" /><line x1="140" y1="178" x2="158" y2="178" class="bar-error" /><line x1="140" y1="208" x2="158" y2="208" class="bar-error" /></g>
+                <g class="bar-mark bar-delay-2" data-tooltip="Condition B · mean 58 · std 4"><rect x="245" y="146" width="88" height="169" class="bar-fill" /><line x1="289" y1="134" x2="289" y2="158" class="bar-error" /><line x1="280" y1="134" x2="298" y2="134" class="bar-error" /><line x1="280" y1="158" x2="298" y2="158" class="bar-error" /></g>
+                <g class="bar-mark bar-delay-3" data-tooltip="Condition C · mean 67 · std 6"><rect x="385" y="120" width="88" height="195" class="bar-fill bar-fill-warm" /><line x1="429" y1="103" x2="429" y2="137" class="bar-error bar-error-warm" /><line x1="420" y1="103" x2="438" y2="103" class="bar-error bar-error-warm" /><line x1="420" y1="137" x2="438" y2="137" class="bar-error bar-error-warm" /></g>
+                <g class="bar-mark bar-delay-4" data-tooltip="Condition D · mean 76 · std 3"><rect x="525" y="94" width="88" height="221" class="bar-fill" /><line x1="569" y1="85" x2="569" y2="103" class="bar-error" /><line x1="560" y1="85" x2="578" y2="85" class="bar-error" /><line x1="560" y1="103" x2="578" y2="103" class="bar-error" /></g>
+                <text x="149" y="337" text-anchor="middle" class="category-label">A</text><text x="289" y="337" text-anchor="middle" class="category-label">B</text><text x="429" y="337" text-anchor="middle" class="category-label">C</text><text x="569" y="337" text-anchor="middle" class="category-label">D</text>
+                <text x="381" y="360" text-anchor="middle" class="axis-title">experimental condition</text><text x="18" y="170" text-anchor="middle" transform="rotate(-90 18 170)" class="axis-title">score</text>
+              </svg>
+              <div class="chart-tooltip" role="tooltip" hidden></div>
+            </div>
+            <div class="figure-footer"><figcaption id="bar-caption" class="figure-caption"><span class="figure-title">Comparison across conditions.</span> Bars show means and whiskers show one standard deviation.</figcaption></div>
+          </figure>
+
+          <h2>What this template is for</h2>
+          <p>Future posts can swap in real data and labels while keeping the slow reveal and point-level inspection. The surrounding structure is intentionally neutral enough for a technical note, an unfinished idea, or something entirely unrelated to research.</p>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      (() => {
+        const subfigureTrack = document.getElementById('subfigure-track');
+        const sourceFigure = document.querySelector('.interactive-line-figure');
+        [2, 3].forEach(number => {
+          const clone = sourceFigure.cloneNode(true);
+          const caption = clone.querySelector('.figure-caption');
+          const tooltip = clone.querySelector('.chart-tooltip');
+          clone.classList.add('carousel-figure');
+          clone.setAttribute('aria-labelledby', `chart-caption-${number}`);
+          caption.id = `chart-caption-${number}`;
+          tooltip.id = `chart-tooltip-${number}`;
+          subfigureTrack.append(clone);
+        });
+        const subfigureDots = [...document.querySelectorAll('.subfigure-pagination button')];
+        const previousFigureButton = document.querySelector('.carousel-arrow-previous');
+        const nextFigureButton = document.querySelector('.carousel-arrow-next');
+        const chartControllers = new Map();
+
+        function initializeChart(figure) {
+        const svg = figure.querySelector('.line-chart');
+        const readout = figure.querySelector('.point-readout');
+        const tooltip = figure.querySelector('.chart-tooltip');
+        const replayButton = figure.querySelector('.replay-button');
+        const pauseButton = figure.querySelector('.pause-button');
+        const playButton = figure.querySelector('.play-button');
+        const fastPlayButton = figure.querySelector('.fast-play-button');
+        const ns = 'http://www.w3.org/2000/svg';
+        const width = 720;
+        const height = 370;
+        const margin = { top: 24, right: 10, bottom: 55, left: 52 };
+        const plotWidth = width - margin.left - margin.right;
+        const plotHeight = height - margin.top - margin.bottom;
+        const series = [
+          {
+            name: 'Observed', className: 'series-observed', uncertainty: true,
+            description: 'Observed mean outcomes. The shaded band and vertical whiskers show one standard deviation.',
+            values: [
+              { x: 1, mean: 2.10, std: 0.42 }, { x: 2, mean: 2.45, std: 0.38 },
+              { x: 3, mean: 2.30, std: 0.33 }, { x: 4, mean: 2.87, std: 0.29 },
+              { x: 5, mean: 3.15, std: 0.31 }, { x: 6, mean: 3.06, std: 0.27 },
+              { x: 7, mean: 3.54, std: 0.24 }, { x: 8, mean: 3.82, std: 0.20 },
+              { x: 9, mean: 4.17, std: 0.18 }, { x: 10, mean: 4.48, std: 0.16 }
+            ]
+          },
+          {
+            name: 'Reference', className: 'series-reference', uncertainty: false,
+            description: 'A comparison trajectory shown as a dashed line without an uncertainty interval.',
+            values: [
+              { x: 1, mean: 1.92 }, { x: 2, mean: 2.10 }, { x: 3, mean: 2.28 },
+              { x: 4, mean: 2.52 }, { x: 5, mean: 2.73 }, { x: 6, mean: 2.94 },
+              { x: 7, mean: 3.16 }, { x: 8, mean: 3.38 }, { x: 9, mean: 3.63 },
+              { x: 10, mean: 3.91 }
+            ]
+          }
+        ];
+        const primaryData = series[0].values;
+        const fixedYLines = [
+          { value: 3.5, label: 'target = 3.50' }
+        ];
+        const yMin = 1.5;
+        const yMax = 5;
+        const xScale = x => margin.left + ((x - 1) / 9) * plotWidth;
+        const yScale = y => margin.top + ((yMax - y) / (yMax - yMin)) * plotHeight;
+
+        function make(tag, attributes = {}) {
+          const element = document.createElementNS(ns, tag);
+          Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+          return element;
+        }
+
+        function addText(text, attributes) {
+          const element = make('text', attributes);
+          element.textContent = text;
+          svg.append(element);
+          return element;
+        }
+
+        function addAnnotatedAxisTitle(text, description, attributes) {
+          const label = addText(text, {
+            ...attributes,
+            class: 'axis-title axis-title-annotated',
+            tabindex: '0',
+            role: 'img',
+            'aria-label': `${text}. ${description}`,
+            'aria-describedby': tooltip.id
+          });
+          label.addEventListener('pointerenter', () => showAxisTooltip(label, text, description));
+          label.addEventListener('pointerleave', hideTooltip);
+          label.addEventListener('focus', () => showAxisTooltip(label, text, description));
+          label.addEventListener('blur', hideTooltip);
+        }
+
+        function hideTooltip() {
+          tooltip.hidden = true;
+        }
+
+        function overlaps(first, second) {
+          return first.left < second.right && first.right > second.left && first.top < second.bottom && first.bottom > second.top;
+        }
+
+        function placeTooltip(anchor, content) {
+          const chartBounds = svg.getBoundingClientRect();
+          const anchorBounds = anchor.getBoundingClientRect();
+          tooltip.innerHTML = content;
+          tooltip.style.left = '-9999px';
+          tooltip.style.top = '-9999px';
+          tooltip.hidden = false;
+
+          const tooltipWidth = tooltip.offsetWidth;
+          const tooltipHeight = tooltip.offsetHeight;
+          const padding = 10;
+          const anchorRect = {
+            left: anchorBounds.left - chartBounds.left,
+            right: anchorBounds.right - chartBounds.left,
+            top: anchorBounds.top - chartBounds.top,
+            bottom: anchorBounds.bottom - chartBounds.top
+          };
+          const blocked = [...svg.querySelectorAll('.data-point, .axis-label, .axis-title, .series-label, .fixed-value-label')].map(element => {
+            const bounds = element.getBoundingClientRect();
+            return {
+              left: bounds.left - chartBounds.left - 4,
+              right: bounds.right - chartBounds.left + 4,
+              top: bounds.top - chartBounds.top - 4,
+              bottom: bounds.bottom - chartBounds.top + 4
+            };
+          });
+          const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+          const candidates = [
+            { left: anchorRect.left + ((anchorRect.right - anchorRect.left - tooltipWidth) / 2), top: anchorRect.top - tooltipHeight - padding },
+            { left: anchorRect.left + ((anchorRect.right - anchorRect.left - tooltipWidth) / 2), top: anchorRect.bottom + padding },
+            { left: anchorRect.right + padding, top: anchorRect.top + ((anchorRect.bottom - anchorRect.top - tooltipHeight) / 2) },
+            { left: anchorRect.left - tooltipWidth - padding, top: anchorRect.top + ((anchorRect.bottom - anchorRect.top - tooltipHeight) / 2) }
+          ].map(candidate => ({
+            left: clamp(candidate.left, 6, chartBounds.width - tooltipWidth - 6),
+            top: clamp(candidate.top, 6, chartBounds.height - tooltipHeight - 6)
+          }));
+          const scored = candidates.map(candidate => {
+            const rect = { left: candidate.left, right: candidate.left + tooltipWidth, top: candidate.top, bottom: candidate.top + tooltipHeight };
+            return { candidate, collisions: blocked.filter(block => overlaps(rect, block)).length };
+          });
+          const best = scored.find(option => option.collisions === 0) || scored.reduce((least, option) => option.collisions < least.collisions ? option : least);
+          tooltip.style.left = `${best.candidate.left}px`;
+          tooltip.style.top = `${best.candidate.top}px`;
+        }
+
+        function showTooltip(seriesName, point, event) {
+          const standardDeviation = point.std == null ? '' : `<span>std&nbsp;&nbsp;&nbsp;&nbsp;${point.std.toFixed(2)}</span>`;
+          placeTooltip(event.currentTarget, `<strong>${seriesName} · iteration ${point.x}</strong><span>mean&nbsp;&nbsp;${point.mean.toFixed(2)}</span>${standardDeviation}`);
+          readout.value = `${seriesName}: x = ${point.x} · mean = ${point.mean.toFixed(2)}${point.std == null ? '' : ` · std = ${point.std.toFixed(2)}`}`;
+        }
+
+        function showAxisTooltip(label, title, description) {
+          placeTooltip(label, `<strong>${title}</strong><span>${description}</span>`);
+        }
+
+        function addAnnotatedLegendItem(seriesItem, index) {
+          const y = margin.top + 17 + (index * 17);
+          const group = make('g', {
+            class: 'legend-item',
+            tabindex: '0',
+            role: 'img',
+            'aria-label': `${seriesItem.name}. ${seriesItem.description}`,
+            'aria-describedby': tooltip.id
+          });
+          group.append(make('rect', { x: margin.left + 7, y: y - 10, width: 112, height: 16, class: 'legend-hit-area' }));
+          group.append(make('line', { x1: margin.left + 13, y1: y, x2: margin.left + 33, y2: y, class: `legend-swatch ${seriesItem.className}` }));
+          const label = make('text', { x: margin.left + 40, y: y + 4, class: `series-label ${seriesItem.className}` });
+          label.textContent = seriesItem.name;
+          group.append(label);
+          group.addEventListener('pointerenter', () => placeTooltip(group, `<strong>${seriesItem.name}</strong><span>${seriesItem.description}</span>`));
+          group.addEventListener('pointerleave', hideTooltip);
+          group.addEventListener('focus', () => placeTooltip(group, `<strong>${seriesItem.name}</strong><span>${seriesItem.description}</span>`));
+          group.addEventListener('blur', hideTooltip);
+          svg.append(group);
+        }
+
+        function drawFrame() {
+          svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+          svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          svg.append(make('rect', { x: margin.left, y: margin.top, width: plotWidth, height: plotHeight, class: 'chart-frame' }));
+          [2, 3, 4, 5].forEach(value => {
+            const y = yScale(value);
+            svg.append(make('line', { x1: margin.left, y1: y, x2: width - margin.right, y2: y, class: 'grid-line' }));
+            addText(value.toFixed(1), { x: margin.left - 12, y: y + 4, 'text-anchor': 'end', class: 'axis-label' });
+          });
+          fixedYLines.forEach(reference => {
+            const y = yScale(reference.value);
+            svg.append(make('line', { x1: margin.left, y1: y, x2: width - margin.right, y2: y, class: 'fixed-value-line' }));
+            addText(reference.label, { x: width - margin.right - 8, y: y - 7, 'text-anchor': 'end', class: 'fixed-value-label' });
+          });
+          primaryData.forEach(point => {
+            const x = xScale(point.x);
+            svg.append(make('line', { x1: x, y1: height - margin.bottom, x2: x, y2: height - margin.bottom + 5, class: 'axis-tick' }));
+            addText(point.x, { x, y: height - margin.bottom + 26, 'text-anchor': 'middle', class: 'axis-label' });
+          });
+          series.forEach(addAnnotatedLegendItem);
+          addAnnotatedAxisTitle('Iteration', 'The sequential observation number; new points are revealed from left to right.', { x: margin.left + plotWidth / 2, y: height - 12, 'text-anchor': 'middle' });
+          addAnnotatedAxisTitle('Mean outcome', 'The average outcome at each iteration. The vertical whiskers show one standard deviation.', { x: 18, y: margin.top + plotHeight / 2, transform: `rotate(-90 18 ${margin.top + plotHeight / 2})`, 'text-anchor': 'middle' });
+        }
+
+        function reveal(count) {
+          svg.querySelectorAll('.series-mark').forEach(mark => mark.remove());
+          series.forEach(seriesItem => {
+            const visible = seriesItem.values.slice(0, count);
+            if (seriesItem.uncertainty && visible.length > 1) {
+              const upper = visible.map(point => `${xScale(point.x)} ${yScale(point.mean + point.std)}`).join(' L ');
+              const lower = [...visible].reverse().map(point => `${xScale(point.x)} ${yScale(point.mean - point.std)}`).join(' L ');
+              svg.append(make('path', { d: `M ${upper} L ${lower} Z`, class: `data-area series-mark ${seriesItem.className}` }));
+            }
+            if (visible.length > 1) {
+              svg.append(make('path', { d: visible.map((point, index) => `${index ? 'L' : 'M'} ${xScale(point.x)} ${yScale(point.mean)}`).join(' '), class: `data-line series-mark ${seriesItem.className}` }));
+            }
+            visible.forEach(point => {
+              const x = xScale(point.x);
+              if (seriesItem.uncertainty) {
+                const upper = yScale(point.mean + point.std);
+                const lower = yScale(point.mean - point.std);
+                const whisker = make('g', { class: `series-mark uncertainty-mark ${seriesItem.className}` });
+                whisker.append(make('line', { x1: x, y1: upper, x2: x, y2: lower }));
+                whisker.append(make('line', { x1: x - 5, y1: upper, x2: x + 5, y2: upper }));
+                whisker.append(make('line', { x1: x - 5, y1: lower, x2: x + 5, y2: lower }));
+                svg.append(whisker);
+              }
+              const details = point.std == null ? `Iteration ${point.x}, mean ${point.mean.toFixed(2)}` : `Iteration ${point.x}, mean ${point.mean.toFixed(2)}, standard deviation ${point.std.toFixed(2)}`;
+              const dot = make('circle', { cx: x, cy: yScale(point.mean), r: 5.5, class: `data-point series-mark ${seriesItem.className}`, tabindex: '0', role: 'button', 'aria-label': `${seriesItem.name}: ${details}` });
+              dot.addEventListener('pointerenter', event => showTooltip(seriesItem.name, point, event));
+              dot.addEventListener('pointerleave', hideTooltip);
+              dot.addEventListener('focus', event => showTooltip(seriesItem.name, point, event));
+              dot.addEventListener('blur', hideTooltip);
+              svg.append(dot);
+            });
+          });
+          if (count === primaryData.length) readout.value = 'Hover a point to inspect its values.';
+        }
+
+        let visibleCount = 0;
+        let loader;
+        let delay = 650;
+        let paused = false;
+
+        function scheduleNext() {
+          window.clearTimeout(loader);
+          if (paused || visibleCount >= primaryData.length) return;
+          loader = window.setTimeout(() => {
+            visibleCount += 1;
+            reveal(visibleCount);
+            scheduleNext();
+          }, delay);
+        }
+
+        function startLoading(reset = false) {
+          window.clearTimeout(loader);
+          paused = false;
+          if (reset) {
+            visibleCount = 0;
+            reveal(visibleCount);
+          }
+          hideTooltip();
+          if (visibleCount >= primaryData.length) {
+            visibleCount = 0;
+            reveal(visibleCount);
+          }
+          readout.value = 'Loading observations…';
+          scheduleNext();
+        }
+
+        function setActiveControl(button) {
+          [pauseButton, playButton, fastPlayButton].forEach(control => {
+            const selected = control === button;
+            control.classList.toggle('is-active', selected);
+            control.setAttribute('aria-pressed', selected);
+          });
+        }
+
+        replayButton.addEventListener('click', () => {
+          setActiveControl(playButton);
+          delay = 650;
+          startLoading(true);
+        });
+        pauseButton.addEventListener('click', () => {
+          paused = true;
+          window.clearTimeout(loader);
+          setActiveControl(pauseButton);
+          readout.value = 'Animation paused.';
+        });
+        playButton.addEventListener('click', () => {
+          delay = 650;
+          setActiveControl(playButton);
+          startLoading();
+        });
+        fastPlayButton.addEventListener('click', () => {
+          delay = 180;
+          setActiveControl(fastPlayButton);
+          startLoading();
+        });
+        drawFrame();
+        setActiveControl(playButton);
+        paused = true;
+        visibleCount = 0;
+        reveal(visibleCount);
+        readout.value = 'Animation ready.';
+        return {
+          restart() {
+            delay = 650;
+            setActiveControl(playButton);
+            startLoading(true);
+          },
+          prepare() {
+            window.clearTimeout(loader);
+            paused = true;
+            visibleCount = 0;
+            reveal(visibleCount);
+            hideTooltip();
+            setActiveControl(playButton);
+            readout.value = 'Animation ready.';
+          }
+        };
+        }
+
+        document.querySelectorAll('.interactive-line-figure').forEach(figure => chartControllers.set(figure, initializeChart(figure)));
+
+        if (subfigureTrack) {
+          const carouselFigures = [...subfigureTrack.querySelectorAll('.carousel-figure')];
+          let activeFigureIndex = 0;
+          let carouselFrame;
+          const updateSubfigurePagination = () => {
+            const nextIndex = Math.max(0, Math.min(carouselFigures.length - 1, Math.round(subfigureTrack.scrollLeft / subfigureTrack.clientWidth)));
+            subfigureDots.forEach((dot, index) => dot.setAttribute('aria-current', index === nextIndex));
+            previousFigureButton.disabled = nextIndex === 0;
+            nextFigureButton.disabled = nextIndex === carouselFigures.length - 1;
+            if (nextIndex !== activeFigureIndex) {
+              activeFigureIndex = nextIndex;
+            }
+          };
+          const showFigure = index => {
+            const boundedIndex = Math.max(0, Math.min(carouselFigures.length - 1, index));
+            subfigureTrack.scrollTo({ left: boundedIndex * subfigureTrack.clientWidth, behavior: 'smooth' });
+          };
+          subfigureDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showFigure(index));
+          });
+          previousFigureButton.addEventListener('click', () => showFigure(activeFigureIndex - 1));
+          nextFigureButton.addEventListener('click', () => showFigure(activeFigureIndex + 1));
+          subfigureTrack.addEventListener('scroll', () => {
+            window.cancelAnimationFrame(carouselFrame);
+            carouselFrame = window.requestAnimationFrame(updateSubfigurePagination);
+          });
+          subfigureTrack.addEventListener('keydown', event => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+            event.preventDefault();
+            const direction = event.key === 'ArrowRight' ? 1 : -1;
+            showFigure(activeFigureIndex + direction);
+          });
+          updateSubfigurePagination();
+        }
+
+        const visibilityState = new WeakMap();
+        const figureObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            const controller = chartControllers.get(entry.target);
+            const fullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.99;
+            const wasFullyVisible = visibilityState.get(entry.target) === true;
+            if (fullyVisible && !wasFullyVisible) controller.restart();
+            visibilityState.set(entry.target, fullyVisible);
+          });
+        }, { threshold: [0, 0.99, 1] });
+        chartControllers.forEach((controller, figure) => {
+          visibilityState.set(figure, false);
+          figureObserver.observe(figure);
+        });
+
+        document.querySelectorAll('.scientific-figure').forEach(figure => {
+          const svg = figure.querySelector('.scientific-chart');
+          const tooltip = figure.querySelector('.chart-tooltip');
+          const marks = [...svg.querySelectorAll('[data-tooltip]')];
+          const hideTooltip = () => { tooltip.hidden = true; };
+          const showTooltip = mark => {
+            const chartBounds = svg.getBoundingClientRect();
+            const markBounds = mark.getBoundingClientRect();
+            tooltip.innerHTML = `<strong>${mark.dataset.tooltip}</strong>`;
+            tooltip.style.left = '-9999px';
+            tooltip.style.top = '-9999px';
+            tooltip.hidden = false;
+            const tooltipWidth = tooltip.offsetWidth;
+            const tooltipHeight = tooltip.offsetHeight;
+            const anchor = {
+              left: markBounds.left - chartBounds.left,
+              right: markBounds.right - chartBounds.left,
+              top: markBounds.top - chartBounds.top,
+              bottom: markBounds.bottom - chartBounds.top
+            };
+            const blocked = [...svg.querySelectorAll('[data-tooltip], text')].map(element => {
+              const bounds = element.getBoundingClientRect();
+              return { left: bounds.left - chartBounds.left - 4, right: bounds.right - chartBounds.left + 4, top: bounds.top - chartBounds.top - 4, bottom: bounds.bottom - chartBounds.top + 4 };
+            });
+            const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+            const candidates = [
+              { left: anchor.left + ((anchor.right - anchor.left - tooltipWidth) / 2), top: anchor.top - tooltipHeight - 10 },
+              { left: anchor.right + 10, top: anchor.top + ((anchor.bottom - anchor.top - tooltipHeight) / 2) },
+              { left: anchor.left + ((anchor.right - anchor.left - tooltipWidth) / 2), top: anchor.bottom + 10 },
+              { left: anchor.left - tooltipWidth - 10, top: anchor.top + ((anchor.bottom - anchor.top - tooltipHeight) / 2) }
+            ].map(candidate => ({ left: clamp(candidate.left, 6, chartBounds.width - tooltipWidth - 6), top: clamp(candidate.top, 6, chartBounds.height - tooltipHeight - 6) }));
+            const collisionCount = candidate => {
+              const rect = { left: candidate.left, right: candidate.left + tooltipWidth, top: candidate.top, bottom: candidate.top + tooltipHeight };
+              return blocked.filter(item => rect.left < item.right && rect.right > item.left && rect.top < item.bottom && rect.bottom > item.top).length;
+            };
+            const best = candidates.map(candidate => ({ candidate, collisions: collisionCount(candidate) })).reduce((least, option) => option.collisions < least.collisions ? option : least);
+            tooltip.style.left = `${best.candidate.left}px`;
+            tooltip.style.top = `${best.candidate.top}px`;
+          };
+          marks.forEach(mark => {
+            mark.setAttribute('tabindex', '0');
+            mark.setAttribute('role', 'button');
+            mark.setAttribute('aria-label', mark.dataset.tooltip);
+            mark.addEventListener('pointerenter', () => showTooltip(mark));
+            mark.addEventListener('pointerleave', hideTooltip);
+            mark.addEventListener('focus', () => showTooltip(mark));
+            mark.addEventListener('blur', hideTooltip);
+          });
+        });
+
+        const barVisibilityState = new WeakMap();
+        const barAnimationData = new WeakMap();
+        const barAnimationFrames = new WeakMap();
+        const barBaseline = 315;
+        const prepareBarFigure = figure => {
+          if (!barAnimationData.has(figure)) {
+            const groups = [...figure.querySelectorAll('.bar-mark')].map((group, index) => ({
+              delay: index * 90,
+              rect: group.querySelector('.bar-fill'),
+              rectY: Number(group.querySelector('.bar-fill').getAttribute('y')),
+              rectHeight: Number(group.querySelector('.bar-fill').getAttribute('height')),
+              lines: [...group.querySelectorAll('.bar-error')].map(line => ({
+                element: line,
+                y1: Number(line.getAttribute('y1')),
+                y2: Number(line.getAttribute('y2'))
+              }))
+            }));
+            barAnimationData.set(figure, groups);
+          }
+          barAnimationData.get(figure).forEach(group => {
+            group.rect.setAttribute('y', barBaseline);
+            group.rect.setAttribute('height', 0);
+            group.lines.forEach(line => {
+              line.element.setAttribute('y1', barBaseline);
+              line.element.setAttribute('y2', barBaseline);
+            });
+          });
+        };
+        const animateBarFigure = figure => {
+          const previousFrame = barAnimationFrames.get(figure);
+          if (previousFrame) window.cancelAnimationFrame(previousFrame);
+          const groups = barAnimationData.get(figure);
+          prepareBarFigure(figure);
+          barAnimationFrames.set(figure, window.requestAnimationFrame(() => {
+            const startedAt = performance.now();
+            const duration = 1150;
+            const drawBars = now => {
+              let complete = true;
+              groups.forEach(group => {
+                const progress = Math.max(0, Math.min(1, (now - startedAt - group.delay) / duration));
+                const eased = 1 - Math.pow(1 - progress, 3);
+                group.rect.setAttribute('y', barBaseline + ((group.rectY - barBaseline) * eased));
+                group.rect.setAttribute('height', group.rectHeight * eased);
+                group.lines.forEach(line => {
+                  line.element.setAttribute('y1', barBaseline + ((line.y1 - barBaseline) * eased));
+                  line.element.setAttribute('y2', barBaseline + ((line.y2 - barBaseline) * eased));
+                });
+                if (progress < 1) complete = false;
+              });
+              if (!complete) barAnimationFrames.set(figure, window.requestAnimationFrame(drawBars));
+            };
+            barAnimationFrames.set(figure, window.requestAnimationFrame(drawBars));
+          }));
+        };
+        const barFigureObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            const fullyVisible = entry.isIntersecting && entry.intersectionRatio >= 0.98;
+            const wasFullyVisible = barVisibilityState.get(entry.target) === true;
+            if (fullyVisible && !wasFullyVisible) animateBarFigure(entry.target);
+            barVisibilityState.set(entry.target, fullyVisible);
+          });
+        }, { threshold: [0, 0.98, 1] });
+        document.querySelectorAll('.animated-bar-figure').forEach(figure => {
+          prepareBarFigure(figure);
+          barVisibilityState.set(figure, false);
+          barFigureObserver.observe(figure);
+        });
+      })();
+    </script>
+  </body>
+</html>

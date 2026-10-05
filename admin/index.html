@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Admin — Arda Uzunoğlu</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./admin.css">
+  </head>
+  <body class="admin-page">
+    <header class="admin-topbar">
+      <div class="admin-brand">
+        <a href="../blog/index.html" aria-label="Return to blog">← blog</a>
+        <span>Blog Admin</span>
+      </div>
+      <div class="admin-actions">
+        <span id="save-status" class="save-status" aria-live="polite">Drafts stay in this browser</span>
+        <button id="new-draft" type="button">New</button>
+        <button id="save-draft" type="button">Save draft</button>
+        <button id="download-post" type="button">Download HTML</button>
+        <button id="unlock-publishing" type="button" hidden>Unlock publishing</button>
+        <button id="publish-post" class="admin-primary-action" type="button" hidden>Publish</button>
+        <button id="lock-publishing" type="button" hidden>Lock</button>
+      </div>
+    </header>
+
+    <main class="admin-workspace">
+      <section class="admin-editor" aria-labelledby="editor-heading">
+        <div class="admin-section-heading">
+          <div>
+            <p class="admin-eyebrow">Editor</p>
+            <h1 id="editor-heading">Write a post</h1>
+          </div>
+          <label class="draft-picker">
+            <span>Draft</span>
+            <select id="draft-list" aria-label="Saved drafts"><option value="">Unsaved draft</option></select>
+          </label>
+        </div>
+
+        <div class="admin-fields">
+          <label class="admin-field admin-field-wide">
+            <span>Title</span>
+            <input id="post-title" type="text" placeholder="A precise, memorable title" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>Slug</span>
+            <input id="post-slug" type="text" placeholder="my-post" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>Published</span>
+            <input id="post-date" type="date">
+          </label>
+          <label class="admin-field admin-field-wide">
+            <span>Summary</span>
+            <textarea id="post-summary" rows="2" placeholder="One or two sentences that introduce the post."></textarea>
+          </label>
+          <label class="admin-field">
+            <span>Authors</span>
+            <input id="post-authors" type="text" value="Arda Uzunoğlu" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>Affiliation</span>
+            <input id="post-affiliation" type="text" value="Johns Hopkins University" autocomplete="off">
+          </label>
+        </div>
+
+        <div class="markdown-editor">
+          <div class="markdown-toolbar" aria-label="Formatting tools">
+            <button type="button" data-format="heading" title="Heading">H2</button>
+            <button type="button" data-format="bold" title="Bold"><strong>B</strong></button>
+            <button type="button" data-format="italic" title="Italic"><em>I</em></button>
+            <button type="button" data-format="link" title="Link">Link</button>
+            <button type="button" data-format="code" title="Inline code">Code</button>
+            <button type="button" data-format="quote" title="Block quote">“</button>
+            <button type="button" data-format="list" title="Bulleted list">List</button>
+            <button type="button" data-format="image" title="Static image">Image</button>
+            <button id="open-figure-builder" class="interactive-figure-button" type="button" title="Interactive scientific figure">Interactive figure</button>
+          </div>
+          <label for="post-body" class="sr-only">Post body in Markdown</label>
+          <textarea id="post-body" spellcheck="true" placeholder="Start writing in Markdown…"></textarea>
+        </div>
+
+        <details class="admin-help">
+          <summary>Markdown and publishing notes</summary>
+          <p>Use headings, lists, links, block quotes, fenced code blocks, and Markdown images. Use <strong>Interactive figure</strong> for animated line, bar, scatter, heatmap, or swipeable figures. All figures are numbered automatically.</p>
+          <p>For one-click publishing, start the password-protected local publisher as described in <code>admin/README.md</code>, unlock publishing, then click <strong>Publish</strong>. It writes the post, updates the blog index, commits the blog system, and pushes <code>main</code>. Downloading HTML remains available as a manual fallback.</p>
+        </details>
+      </section>
+
+      <section class="admin-preview-panel" aria-labelledby="preview-heading">
+        <div class="preview-toolbar">
+          <div>
+            <p class="admin-eyebrow">Preview</p>
+            <h2 id="preview-heading">Rendered post</h2>
+          </div>
+          <button id="copy-index-entry" type="button">Copy blog entry</button>
+        </div>
+        <div class="admin-preview-canvas">
+          <article id="post-preview" class="blog-post admin-post-preview"></article>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="figure-builder" class="figure-builder-dialog" aria-labelledby="figure-builder-title">
+      <form id="figure-builder-form" class="figure-builder-form">
+        <header class="figure-builder-header">
+          <div>
+            <p class="admin-eyebrow">Figure builder</p>
+            <h2 id="figure-builder-title">Add an interactive figure</h2>
+          </div>
+          <button id="close-figure-builder" class="dialog-close" type="button" aria-label="Close figure builder">×</button>
+        </header>
+
+        <div class="figure-builder-grid">
+          <label class="admin-field">
+            <span>Figure type</span>
+            <select id="figure-type">
+              <option value="line">Line plot</option>
+              <option value="bar">Bar plot</option>
+              <option value="scatter">Scatter plot</option>
+              <option value="heatmap">Heatmap</option>
+              <option value="carousel">Swipeable figure group</option>
+            </select>
+          </label>
+          <label class="figure-animation-field">
+            <input id="figure-animated" type="checkbox" checked>
+            <span>Animate when fully visible</span>
+          </label>
+          <label class="admin-field admin-field-wide">
+            <span>Figure title</span>
+            <input id="figure-title" type="text" value="Mean outcome by iteration." autocomplete="off">
+          </label>
+          <label class="admin-field admin-field-wide">
+            <span>Caption</span>
+            <textarea id="figure-caption" rows="2">Points show mean ± standard deviation.</textarea>
+          </label>
+          <label class="admin-field">
+            <span>x-axis label</span>
+            <input id="figure-x-label" type="text" value="Iteration" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>y-axis label</span>
+            <input id="figure-y-label" type="text" value="Mean outcome" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>x-axis hover description</span>
+            <textarea id="figure-x-description" rows="2">The sequential observation number.</textarea>
+          </label>
+          <label class="admin-field">
+            <span>y-axis hover description</span>
+            <textarea id="figure-y-description" rows="2">The average outcome at each iteration.</textarea>
+          </label>
+          <label class="admin-field admin-field-wide figure-data-field">
+            <span>Data and options (JSON)</span>
+            <textarea id="figure-data" spellcheck="false" aria-describedby="figure-data-help"></textarea>
+            <small id="figure-data-help">The example is fully editable. Series descriptions appear when readers hover over the legend.</small>
+          </label>
+        </div>
+
+        <p id="figure-builder-error" class="figure-builder-error" role="alert" hidden></p>
+        <footer class="figure-builder-actions">
+          <button id="reset-figure-example" type="button">Reset example</button>
+          <span></span>
+          <button id="cancel-figure-builder" type="button">Cancel</button>
+          <button id="submit-figure-builder" class="admin-primary-action" type="submit">Insert figure</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="publisher-login" class="publisher-login-dialog" aria-labelledby="publisher-login-title">
+      <form id="publisher-login-form" class="publisher-login-form">
+        <header class="publisher-login-header">
+          <div>
+            <p class="admin-eyebrow">Private publisher</p>
+            <h2 id="publisher-login-title">Unlock publishing</h2>
+          </div>
+          <button id="close-publisher-login" class="dialog-close" type="button" aria-label="Close publisher login">×</button>
+        </header>
+        <div class="publisher-login-body">
+          <p>Enter the password configured when the local publisher was started.</p>
+          <label class="admin-field">
+            <span>Password</span>
+            <input id="publisher-password" type="password" autocomplete="current-password" required>
+          </label>
+          <p id="publisher-login-error" class="publisher-login-error" role="alert" hidden></p>
+        </div>
+        <footer class="publisher-login-actions">
+          <button id="cancel-publisher-login" type="button">Cancel</button>
+          <button class="admin-primary-action" type="submit">Unlock</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="../figure-runtime.js?v=6"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>
