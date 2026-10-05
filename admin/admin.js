@@ -327,7 +327,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(post.title)} — Arda Uzunoğlu</title>
     <meta name="description" content="${escapeHtml(post.summary)}">
-    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../styles.css?v=20261005">
   </head>
   <body class="benshi-home subpage">
     <main class="profile-page">
