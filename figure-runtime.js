@@ -2,6 +2,7 @@
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const WIDTH = 720;
   const HEIGHT = 370;
+  const AXIS_RIGHT_MARGIN = 30;
   const COLORS = ['#275f9f', '#b16d4b', '#558a6a', '#805b9d', '#b28a35', '#477f86'];
   const observed = new WeakSet();
   const registrations = new WeakMap();
@@ -361,7 +362,7 @@
     yValues.push(...fixedYLines.map(item => number(item.value, NaN)).filter(Number.isFinite));
     const [xMin, xMax] = extent(xValues, config.xMin, config.xMax);
     const [yMin, yMax] = extent(yValues, config.yMin, config.yMax);
-    const margin = { top: 24, right: 10, bottom: 58, left: 62 + Math.max(0, number(config.yLabelGap, 0)) };
+    const margin = { top: 24, right: AXIS_RIGHT_MARGIN, bottom: 58, left: 62 + Math.max(0, number(config.yLabelGap, 0)) };
     const lineLegend = legendLayout(series, margin.left, WIDTH - margin.left - margin.right);
     margin.top = 24 + (lineLegend.rows * lineLegend.rowHeight);
     const uniqueX = [...new Set(xValues)].sort((a, b) => a - b);
@@ -458,7 +459,7 @@
     yValues.push(...fixedYLines.map(item => number(item.value, NaN)).filter(Number.isFinite));
     const [xMin, xMax] = extent(xValues, config.xMin, config.xMax);
     const [yMin, yMax] = extent(yValues, config.yMin, config.yMax);
-    const margin = { top: 24, right: 10, bottom: 58, left: 62 };
+    const margin = { top: 24, right: AXIS_RIGHT_MARGIN, bottom: 58, left: 62 };
     const axes = addNumericAxes(shell, { margin, xMin, xMax, yMin, yMax, xLabel: config.xLabel, xDescription: config.xDescription, yLabel: config.yLabel, yDescription: config.yDescription, fixedYLines });
     const layer = svgElement('g');
     shell.svg.append(layer);
@@ -512,7 +513,7 @@
     yValues.push(...fixedYLines.map(item => number(item.value, NaN)).filter(Number.isFinite));
     const [yMin, yMax] = extent(yValues, config.yMin ?? 0, config.yMax, true);
     const yLabelGap = Math.max(0, number(config.yLabelGap, 0));
-    const margin = { top: 24, right: 10, bottom: 66, left: 62 + yLabelGap };
+    const margin = { top: 24, right: AXIS_RIGHT_MARGIN, bottom: 66, left: 62 + yLabelGap };
     const barLegend = grouped ? legendLayout(series, margin.left, WIDTH - margin.left - margin.right) : null;
     if (barLegend) margin.top = 28 + (barLegend.rows * barLegend.rowHeight);
     const plotWidth = WIDTH - margin.left - margin.right;
