@@ -327,9 +327,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(post.title)} — Arda Uzunoğlu</title>
     <meta name="description" content="${escapeHtml(post.summary)}">
-    <link rel="stylesheet" href="../../styles.css?v=20261005-2">
+    <link rel="stylesheet" href="../../styles.css?v=20261006-1">
+    <script>document.documentElement.classList.add('reader-locked');<\/script>
   </head>
-  <body class="benshi-home subpage">
+  <body class="benshi-home subpage" data-reader-protected>
     <main class="profile-page">
       <nav class="profile-nav" aria-label="Primary navigation">
         <a href="../../index.html">home</a>
@@ -347,6 +348,7 @@ ${renderedBody.split('\n').map(line => `          ${line}`).join('\n')}
         </div>
       </article>
     </main>
+    <script src="../../reader-gate.js?v=1"><\/script>
     <script src="../../figure-runtime.js?v=13"><\/script>
   </body>
 </html>

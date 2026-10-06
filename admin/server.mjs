@@ -58,7 +58,7 @@ function safeRepositoryPath(urlPath) {
   const decoded = decodeURIComponent(urlPath.split('?')[0]);
   const relativePath = decoded === '/' ? 'admin/index.html' : decoded.replace(/^\/+/, '');
   const topLevel = relativePath.split('/')[0];
-  const allowedRootFile = ['index.html', 'styles.css', 'figure-runtime.js'].includes(relativePath);
+  const allowedRootFile = ['index.html', 'styles.css', 'figure-runtime.js', 'reader-gate.js'].includes(relativePath);
   const allowedDirectory = ['blog', 'awards', 'assets'].includes(topLevel);
   const allowedAdminFile = ['admin/index.html', 'admin/admin.css', 'admin/admin.js'].includes(relativePath);
   if (!allowedRootFile && !allowedDirectory && !allowedAdminFile) return null;
@@ -127,7 +127,7 @@ export async function publishPost(payload, dryRun = false) {
   await mkdir(postDirectory, { recursive: true });
   await writeFile(postPath, html, 'utf8');
   await writeFile(blogIndexPath, nextIndex, 'utf8');
-  await runGit(['add', '--', 'admin', 'figure-runtime.js', 'styles.css', 'blog']);
+  await runGit(['add', '--', 'admin', 'figure-runtime.js', 'reader-gate.js', 'styles.css', 'blog']);
 
   let changed = true;
   try {

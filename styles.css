@@ -134,6 +134,20 @@ body.benshi-home {
 .blog-entry time { flex: none; color: #777; font-size: .88rem; }
 .blog-entry:hover h2 { color: #3568ab; }
 .blog-post { max-width: 46rem; counter-reset: figure; }
+.reader-gate { display: none; }
+html.reader-locked .profile-page { display: none; }
+html.reader-locked .reader-gate { display: grid; min-height: 100vh; padding: 2rem 1.25rem; place-items: center; }
+.reader-gate-card { width: min(100%, 23rem); padding: 1.65rem; border: 1px solid #dfe4ea; border-radius: .4rem; background: #fff; box-shadow: 0 12px 34px rgba(38, 51, 69, .09); }
+.reader-gate-kicker { margin: 0 0 .35rem; color: #8490a0; font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.reader-gate-card h1 { margin: 0; color: #263345; font-size: 1.45rem; line-height: 1.25; }
+.reader-gate-copy { margin: .6rem 0 1.25rem; color: #657184; font-size: .92rem; line-height: 1.55; }
+.reader-gate-label { display: block; margin-bottom: .35rem; color: #526074; font-size: .8rem; font-weight: 650; }
+.reader-gate-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; }
+.reader-gate-controls input { min-width: 0; padding: .62rem .7rem; border: 1px solid #cbd4df; border-radius: .28rem; color: #263345; font: inherit; }
+.reader-gate-controls button { padding: .62rem .9rem; border: 1px solid #315f98; border-radius: .28rem; background: #315f98; color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.reader-gate-controls button:disabled { cursor: wait; opacity: .65; }
+.reader-gate-controls input:focus-visible, .reader-gate-controls button:focus-visible { outline: 2px solid #a9c2df; outline-offset: 2px; }
+.reader-gate-error { margin: .65rem 0 0; color: #a34747; font-size: .82rem; }
 .post-header { margin-bottom: 2rem; padding-bottom: 1.9rem; border-bottom: 1px solid #e6e9ed; }
 .post-header h1 { max-width: 100%; margin: 0; color: #263345; font-size: clamp(2rem, 5.3vw, 2.8rem); line-height: 1.12; letter-spacing: -.035em; }
 .post-lede { max-width: 100%; margin: .9rem 0 0; color: #5f6a78; font-size: 1.1rem; line-height: 1.58; }
