@@ -3,7 +3,7 @@
   const WIDTH = 720;
   const HEIGHT = 370;
   const AXIS_RIGHT_MARGIN = 30;
-  const COLORS = ['#275f9f', '#b16d4b', '#558a6a', '#805b9d', '#b28a35', '#477f86'];
+  const COLORS = ['#b39ddb', '#f4a6c1', '#90caf9', '#a5d6a7', '#ffe082'];
   const observed = new WeakSet();
   const registrations = new WeakMap();
 
@@ -384,10 +384,9 @@
       const swatch = svgElement('line', { x1: legendX + 7, y1: y, x2: legendX + 28, y2: y, class: 'legend-swatch' });
       swatch.style.stroke = color;
       group.append(swatch);
-      const label = addSvgText(group, item.name || `Series ${index + 1}`, { x: legendX + 35, y: y + 4, class: 'series-label', fill: color });
+      addSvgText(group, item.name || `Series ${index + 1}`, { x: legendX + 35, y: y + 4, class: 'series-label' });
       legend.append(group);
       bindTooltip(shell, group, item.name || `Series ${index + 1}`, item.description ? [item.description] : []);
-      label.style.fill = color;
     });
     const layer = svgElement('g', { class: 'generated-data-layer' });
     shell.svg.append(layer);
@@ -544,8 +543,7 @@
         const swatch = svgElement('rect', { x: legendX + 4, y: legendY - 7, width: 18, height: 8, class: 'legend-swatch' });
         swatch.style.fill = color;
         legend.append(swatch);
-        const label = addSvgText(legend, position.label, { x: legendX + 29, y: legendY + 2, class: 'series-label' });
-        label.style.fill = color;
+        addSvgText(legend, position.label, { x: legendX + 29, y: legendY + 2, class: 'series-label' });
         shell.svg.append(legend);
         bindTooltip(shell, legend, seriesItem.name || `Series ${index + 1}`, seriesItem.description ? [seriesItem.description] : []);
       });
