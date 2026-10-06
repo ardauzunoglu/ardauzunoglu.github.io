@@ -3,7 +3,7 @@
   const WIDTH = 720;
   const HEIGHT = 370;
   const AXIS_RIGHT_MARGIN = 30;
-  const COLORS = ['#b39ddb', '#f4a6c1', '#90caf9', '#a5d6a7', '#ffe082'];
+  const COLORS = ['#b39ddb', '#f4a6c1', '#90caf9', '#ffcc80', '#80cbc4'];
   const observed = new WeakSet();
   const registrations = new WeakMap();
 
